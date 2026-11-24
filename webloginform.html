@@ -1,33 +1,31 @@
 <html>
-<head>
-<title>Form Validation</title>
-<script>
-function validate() {
-    if (myform.Name.value == "") { alert("Enter Name"); return false; }
-    if (myform.Email.value == "") { alert("Enter Email"); return false; }
-    if (myform.zip.value == "" || isNaN(myform.zip.value) || myform.zip.value.length != 5) { alert("Enter 5 digit Zip"); return false; }
-    if (myform.Country.value == "-1") { alert("Select Country"); return false; }
-    return true;
-}
-</script>
-</head>
-
 <body>
-<form name="myform" onsubmit="return validate()">
-<table border="1">
-<tr><td>Name</td><td><input name="Name"></td></tr>
-<tr><td>Email</td><td><input name="EMail">
-</td></tr>
-<tr><td>Zip Code</td><td><input name="Zip">
-</td></tr>
-<tr><td>Country</td><td><select name="country">
-<option value="-1">[choose yours]</option>
-<option>USA</option><option> UK </option><option>INDIA
-</option>
-</select></td></tr>
-<tr><td></td><td><input type="submit" value=
-"Submit" ></td></tr>
-</table>
-</form>
+    <h2>Welcome to login form</h2>
+    Username: <input id="email"><br><br>
+    Password: <input type="password" id="pwd">
+    <br><br>
+    <button onclick="login()">Login</button>
+    <button onclick="location.reload()">Reset</button>
+
+    <script>
+        function login() {
+            // Note: The original notes had 'email.value' and 'pwd.value' directly,
+            // but standard JavaScript requires getting the element first.
+            let u = document.getElementById("email").value;
+            let p = document.getElementById("pwd").value;
+
+            if (!u) {
+                alert("Please enter user name.");
+            } else if (!p) {
+                alert("Enter the password");
+            } else if (!/^[^ ]+@[^ ]+\.[a-z]{2,3}$/.test(u)) {
+                alert("Enter valid email id.");
+            } else if (p.length != 6) {
+                alert("Password min and max length is 6.");
+            } else {
+                alert("Thank you for login");
+            }
+        }
+    </script>
 </body>
 </html>
